@@ -2,7 +2,8 @@ name: Deploy Project
 on: [push, workflow_dispatch]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on:
+      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -16,7 +17,8 @@ jobs:
         run: npm test
   deploy:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: 
+      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
