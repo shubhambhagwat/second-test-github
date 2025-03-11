@@ -3,7 +3,7 @@ on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on:
-      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-shubham-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -18,7 +18,7 @@ jobs:
   deploy:
     needs: test
     runs-on: 
-      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-shubham-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
